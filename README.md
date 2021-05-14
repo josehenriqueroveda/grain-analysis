@@ -6,3 +6,11 @@ Basic seed counter by an image using Python!
 
 Check the code for more details.
 ![](https://raw.githubusercontent.com/josehenriqueroveda/Seed-Counter/main/img/BeanCount.png)
+
+
+---
+
+### About:
+
+> - 💻 **José Henrique Roveda**
+> - 📨 Contact me on [LinkedIn](https://www.linkedin.com/in/jhroveda/)
