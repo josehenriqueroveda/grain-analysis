@@ -1,5 +1,7 @@
 # Grain Analysis Tool
 
+[![Lint](https://github.com/josehenriqueroveda/grain-analysis/actions/workflows/black.yml/badge.svg)](https://github.com/josehenriqueroveda/grain-analysis/actions/workflows/black.yml)
+
 This project is a grain analysis tool developed in Python, leveraging the OpenCV library for image processing. The tool takes an image of grains as input, identify individual grains and calculate the width and height of each grain.
 
 The tool also calculates the coefficient of variance for the widths and heights, providing a measure of the variability of grain size. The results are visualized directly on the image, with each grain enclosed in a rectangle and the dimensions displayed.
