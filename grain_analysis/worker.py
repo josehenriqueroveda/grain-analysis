@@ -30,34 +30,37 @@ def process_contours(contours, image, ppmm, min_contour_area):
     heights = []
     grains_count = 0
 
-    for cnt in contours:
-        if cv2.contourArea(cnt) > min_contour_area:
-            x, y, w, h = cv2.boundingRect(cnt)
-            cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
-            cv2.putText(
-                image,
-                f"W:{round(w/ppmm)}mm",
-                (x, y - 10),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                0.5,
-                (0, 0, 0),
-                1,
-            )
-            cv2.putText(
-                image,
-                f"H:{round(h/ppmm)}mm",
-                (x, y - 30),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                0.5,
-                (0, 0, 0),
-                1,
-            )
-
+    for contour in contours:
+        if cv2.contourArea(contour) > min_contour_area:
+            x, y, w, h = cv2.boundingRect(contour)
+            draw_rectangle_and_text(image, x, y, w, h, ppmm)
             widths.append(w / ppmm)
             heights.append(h / ppmm)
             grains_count += 1
 
     return widths, heights, grains_count
+
+
+def draw_rectangle_and_text(image, x, y, w, h, ppmm):
+    cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
+    cv2.putText(
+        image,
+        f"W:{round(w/ppmm)}mm",
+        (x, y - 10),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        0.5,
+        (0, 0, 0),
+        1,
+    )
+    cv2.putText(
+        image,
+        f"H:{round(h/ppmm)}mm",
+        (x, y - 30),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        0.5,
+        (0, 0, 0),
+        1,
+    )
 
 
 def analyze_image(image_path, output_path, ppmm, min_contour_area):
@@ -71,10 +74,13 @@ def analyze_image(image_path, output_path, ppmm, min_contour_area):
     cv_width = calculate_coefficient_of_variance(widths)
     cv_height = calculate_coefficient_of_variance(heights)
 
-    print(f"Coefficient of variance for width: {round(cv_width, 4)} mm")
-    print(f"Coefficient of variance for height: {round(cv_height, 4)} mm")
-    print(f"Grains count: {grains}")
+    add_text_to_image(image, grains, cv_width, cv_height)
 
+    resized_image = resize_image(image, 80)
+    display_and_save_image(resized_image, output_path)
+
+
+def add_text_to_image(image, grains, cv_width, cv_height):
     cv2.putText(
         image,
         f"Grains count: {grains}",
@@ -84,7 +90,6 @@ def analyze_image(image_path, output_path, ppmm, min_contour_area):
         (0, 0, 255),
         2,
     )
-
     height = image.shape[0]
     cv2.putText(
         image,
@@ -105,14 +110,17 @@ def analyze_image(image_path, output_path, ppmm, min_contour_area):
         1,
     )
 
-    scale_percent = 80  # percent of original size
+
+def resize_image(image, scale_percent):
     width = int(image.shape[1] * scale_percent / 100)
     height = int(image.shape[0] * scale_percent / 100)
     dim = (width, height)
-    resized = cv2.resize(image, dim, interpolation=cv2.INTER_AREA)
+    return cv2.resize(image, dim, interpolation=cv2.INTER_AREA)
 
-    cv2.imshow("image", resized)
-    cv2.imwrite(output_path, image)
+
+def display_and_save_image(image, output_path):
+    cv2.imshow("image", image)
+    # cv2.imwrite(output_path, image)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
