@@ -49,12 +49,12 @@ python worker.py
 This will analyze the image `img/beans.jpg` and save the output to `img/beans_output.jpg`.
 
 
-![](https://raw.githubusercontent.com/josehenriqueroveda/seed-counter/main/img/BeanCount.png)
+![](https://raw.githubusercontent.com/josehenriqueroveda/grain-analysis/main/grain_analysis/img/beans_output.jpg)
 
 
 ---
 
-### About:
+### Author:
 
 > - 💻 **José Henrique Roveda**
 > - 📨 Contact me on [LinkedIn](https://www.linkedin.com/in/jhroveda/)
