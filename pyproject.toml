@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "seed-counter"
+name = "grain-analysis"
 version = "0.1.0"
-description = "Count seeds of beans, soybeans, corn, using computer vision."
+description = "A Python-based grain analysis tool that uses OpenCV for image processing to measure and visualize grain dimensions."
 authors = ["Jose Henrique Roveda"]
 readme = "README.md"
 packages = [{include = "seed_counter"}]

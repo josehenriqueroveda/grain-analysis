@@ -1,6 +1,10 @@
 # Grain Analysis Tool
 
-This is a Python application that uses OpenCV to analyze images of grains. It calculates the coefficient of variance for the width and height of the grains, counts the number of grains, and visualizes these measurements on the image.
+This project is a grain analysis tool developed in Python, leveraging the OpenCV library for image processing. The tool takes an image of grains as input, identify individual grains and calculate the width and height of each grain.
+
+The tool also calculates the coefficient of variance for the widths and heights, providing a measure of the variability of grain size. The results are visualized directly on the image, with each grain enclosed in a rectangle and the dimensions displayed.
+
+The output is a resized image that can be displayed and saved for further analysis. This tool is useful for researchers and professionals in agriculture, food science, and related fields who need to analyze grain size and distribution
 
 ## How it Works
 
