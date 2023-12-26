@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "seed-counter"
+version = "0.1.0"
+description = "Count seeds of beans, soybeans, corn, using computer vision."
+authors = ["Jose Henrique Roveda"]
+readme = "README.md"
+packages = [{include = "seed_counter"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+opencv-python = "^4.8.1.78"
+matplotlib = "^3.8.2"
+pre-commit = "^3.6.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
